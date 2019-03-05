@@ -1,8 +1,11 @@
 # Official Python base image is needed or some applications will segfault.
-FROM python:$ALPINE_VERSION-alpine
+FROM alpine:3.8
 
 # PyInstaller needs zlib-dev, gcc, libc-dev, and musl-dev
 RUN apk --update --no-cache add \
+    py-pip \
+# msoffcrypto-toolで使用
+    python2-dev libffi-dev openssl-dev \
     zlib-dev \
     musl-dev \
     libc-dev \
@@ -15,10 +18,8 @@ RUN apk --update --no-cache add \
 RUN pip install \
     pycrypto
 
-ARG PYINSTALLER_TAG=$PYINSTALLER_TAG
-
 # Build bootloader for alpine
-RUN git clone --depth 1 --single-branch --branch $PYINSTALLER_TAG https://github.com/pyinstaller/pyinstaller.git /tmp/pyinstaller \
+RUN git clone --depth 1 --single-branch --branch v3.4 https://github.com/pyinstaller/pyinstaller.git /tmp/pyinstaller \
     && cd /tmp/pyinstaller/bootloader \
     && python ./waf configure --no-lsb all \
     && pip install .. \

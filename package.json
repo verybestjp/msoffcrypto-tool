@@ -1,0 +1,9 @@
+{
+  "name": "msoffcrypto-tool",
+  "version": "1.0.0",
+  "files": ["msoffcrypto-tool/dist/msoffcrypto-tool"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verybestjp/msoffcrypto-tool.git"
+  }
+}

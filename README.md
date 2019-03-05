@@ -1,3 +1,17 @@
+msoffcrypto-toolのbuild方法
+==================
+```
+docker build -t pyinstaller-alpine .
+docker run --rm \
+    -v $PWD/msoffcrypto-tool:/src \
+    pyinstaller-alpine \
+    --noconfirm \
+    --onefile \
+    --log-level DEBUG \
+    --clean \
+msoffcrypto-tool.py
+```
+
 PyInstaller Alpine
 ==================
 
